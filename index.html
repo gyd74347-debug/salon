@@ -1,11 +1,9 @@
-# Luxora Salon — Premium Modern Salon Website
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <title>Luxora Salon</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -13,12 +11,12 @@
 <style>
 
 :root{
---bg:#0F0B14;
---card:#1B1325;
---gold:#D4A95F;
---gold2:#F5D28C;
+--bg:#0f0b14;
+--card:#1b1325;
+--gold:#d4a95f;
+--gold2:#f5d28c;
 --text:#ffffff;
---muted:#B8B2C5;
+--muted:#b8b2c5;
 --border:rgba(255,255,255,0.08);
 }
 
@@ -39,17 +37,22 @@ color:var(--text);
 overflow-x:hidden;
 }
 
+/* BACKGROUND GLOW */
+
 body::before{
 content:'';
 position:fixed;
-width:500px;
-height:500px;
+width:600px;
+height:600px;
 background:rgba(212,169,95,0.12);
 filter:blur(120px);
-top:-150px;
+top:-200px;
 right:-100px;
 z-index:-1;
+animation:floaty 7s ease-in-out infinite;
 }
+
+/* NAVBAR */
 
 nav{
 position:fixed;
@@ -61,7 +64,7 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:20px 70px;
-background:rgba(15,11,20,0.82);
+background:rgba(15,11,20,0.8);
 backdrop-filter:blur(16px);
 border-bottom:1px solid var(--border);
 }
@@ -83,6 +86,7 @@ list-style:none;
 text-decoration:none;
 color:var(--muted);
 transition:0.3s;
+font-weight:500;
 }
 
 .nav-links a:hover{
@@ -90,12 +94,14 @@ color:white;
 }
 
 .nav-btn{
-background:linear-gradient(135deg,var(--gold),#8B5E2B);
-color:white;
-padding:14px 26px;
+background:linear-gradient(135deg,var(--gold),#8b5e2b);
+padding:14px 28px;
 border-radius:14px;
 text-decoration:none;
+color:white;
 font-weight:600;
+position:relative;
+overflow:hidden;
 transition:0.4s;
 }
 
@@ -103,11 +109,47 @@ transition:0.4s;
 transform:translateY(-5px);
 }
 
+.nav-btn::before{
+content:'';
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,0.4),
+transparent
+);
+transition:0.8s;
+}
+
+.nav-btn:hover::before{
+left:100%;
+}
+
+/* HERO */
+
 .hero{
 min-height:100vh;
 display:flex;
 align-items:center;
 padding:140px 70px 80px;
+position:relative;
+}
+
+.hero::before{
+content:'';
+position:absolute;
+width:320px;
+height:320px;
+border-radius:50%;
+background:rgba(212,169,95,0.1);
+left:-120px;
+top:120px;
+filter:blur(80px);
+animation:floaty 6s ease-in-out infinite;
 }
 
 .hero-wrapper{
@@ -120,7 +162,7 @@ width:100%;
 
 .hero-left h1{
 font-family:'Playfair Display',serif;
-font-size:84px;
+font-size:88px;
 line-height:1.05;
 margin-bottom:25px;
 }
@@ -133,8 +175,8 @@ color:var(--gold2);
 font-size:18px;
 line-height:1.9;
 color:var(--muted);
-max-width:650px;
 margin-bottom:40px;
+max-width:650px;
 }
 
 .hero-btns{
@@ -145,15 +187,17 @@ flex-wrap:wrap;
 
 .btn-primary,
 .btn-outline{
-padding:16px 30px;
+padding:16px 32px;
 border-radius:14px;
 text-decoration:none;
 font-weight:600;
 transition:0.4s;
+position:relative;
+overflow:hidden;
 }
 
 .btn-primary{
-background:linear-gradient(135deg,var(--gold),#8B5E2B);
+background:linear-gradient(135deg,var(--gold),#8b5e2b);
 color:white;
 box-shadow:0 15px 40px rgba(212,169,95,0.2);
 }
@@ -162,31 +206,57 @@ box-shadow:0 15px 40px rgba(212,169,95,0.2);
 transform:translateY(-6px);
 }
 
+.btn-primary::before{
+content:'';
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,0.5),
+transparent
+);
+transition:0.8s;
+}
+
+.btn-primary:hover::before{
+left:100%;
+}
+
 .btn-outline{
 border:1px solid var(--border);
-color:white;
 background:rgba(255,255,255,0.03);
+color:white;
 }
 
 .btn-outline:hover{
 background:rgba(255,255,255,0.08);
 }
 
+/* HERO IMAGE */
+
 .hero-image{
 height:650px;
 border-radius:40px;
 background:url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=1200&auto=format&fit=crop') center/cover;
+box-shadow:0 30px 80px rgba(0,0,0,0.45);
 position:relative;
 overflow:hidden;
-box-shadow:0 30px 80px rgba(0,0,0,0.4);
+animation:floaty 6s ease-in-out infinite;
+transition:0.2s;
 }
 
 .hero-image::before{
 content:'';
 position:absolute;
 inset:0;
-background:linear-gradient(to top,rgba(0,0,0,0.5),transparent);
+background:linear-gradient(to top,rgba(0,0,0,0.55),transparent);
 }
+
+/* STATS */
 
 .stats{
 display:grid;
@@ -201,18 +271,25 @@ padding:25px;
 border-radius:24px;
 border:1px solid var(--border);
 text-align:center;
+transition:0.4s;
+}
+
+.stat-card:hover{
+transform:translateY(-10px);
 }
 
 .stat-card h2{
-font-size:40px;
+font-size:42px;
 font-family:'Playfair Display',serif;
 color:var(--gold2);
-margin-bottom:8px;
+margin-bottom:10px;
 }
 
 .stat-card p{
 color:var(--muted);
 }
+
+/* SECTIONS */
 
 section{
 padding:120px 70px;
@@ -224,10 +301,10 @@ margin-bottom:70px;
 }
 
 .section-head span{
-color:var(--gold2);
 letter-spacing:4px;
 font-size:13px;
 text-transform:uppercase;
+color:var(--gold2);
 }
 
 .section-head h2{
@@ -243,85 +320,81 @@ line-height:1.8;
 color:var(--muted);
 }
 
+/* CARDS */
+
 .services-grid,
-.team-grid,
-.gallery-grid{
+.gallery-grid,
+.team-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
 gap:30px;
 }
 
 .service-card,
-.team-card,
-.gallery-card{
-background:linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02));
+.gallery-card,
+.team-card{
+background:linear-gradient(
+180deg,
+rgba(255,255,255,0.04),
+rgba(255,255,255,0.02)
+);
 border:1px solid var(--border);
 border-radius:32px;
 overflow:hidden;
 transition:0.5s;
+animation:glow 4s infinite;
 }
 
 .service-card:hover,
-.team-card:hover,
-.gallery-card:hover{
-transform:translateY(-12px);
+.gallery-card:hover,
+.team-card:hover{
+transform:translateY(-14px) scale(1.03);
 box-shadow:0 25px 60px rgba(212,169,95,0.18);
 }
 
 .service-top,
-.team-image,
-.gallery-image{
+.gallery-image,
+.team-image{
 height:280px;
 display:flex;
 align-items:center;
 justify-content:center;
 font-size:90px;
-background:linear-gradient(135deg,#D4A95F,#6F4A1F);
+background:linear-gradient(135deg,#d4a95f,#6f4a1f);
+transition:0.5s;
+}
+
+.gallery-card:hover .gallery-image,
+.team-card:hover .team-image{
+transform:scale(1.1) rotate(4deg);
 }
 
 .service-content,
-.team-content,
-.gallery-content{
+.gallery-content,
+.team-content{
 padding:35px;
 }
 
 .service-content h3,
-.team-content h3,
-.gallery-content h3{
+.gallery-content h3,
+.team-content h3{
 font-size:28px;
 margin-bottom:14px;
 font-family:'Playfair Display',serif;
 }
 
 .service-content p,
-.team-content p,
-.gallery-content p{
-color:var(--muted);
+.gallery-content p,
+.team-content p{
 line-height:1.8;
+color:var(--muted);
 }
 
 .price{
 margin-top:18px;
-font-size:22px;
+font-size:24px;
 font-weight:700;
 color:var(--gold2);
-}
-
-.team-card{
-position:relative;
-}
-
-.team-card:hover{
-transform:scale(1.05);
-z-index:5;
-}
-
-.team-image{
-transition:0.5s;
-}
-
-.team-card:hover .team-image{
-transform:scale(1.1);
 }
 
 .role{
@@ -330,12 +403,18 @@ margin-bottom:14px;
 font-weight:600;
 }
 
+/* BOOKING */
+
 .booking-wrap{
 max-width:900px;
 margin:auto;
-background:linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02));
 padding:50px;
 border-radius:35px;
+background:linear-gradient(
+180deg,
+rgba(255,255,255,0.04),
+rgba(255,255,255,0.02)
+);
 border:1px solid var(--border);
 }
 
@@ -359,11 +438,12 @@ border:1px solid var(--border);
 background:rgba(255,255,255,0.04);
 color:white;
 font-size:15px;
+outline:none;
 }
 
 .form-group textarea{
-min-height:160px;
 resize:none;
+min-height:160px;
 }
 
 .submit-btn{
@@ -371,26 +451,51 @@ width:100%;
 padding:18px;
 border:none;
 border-radius:18px;
-background:linear-gradient(135deg,var(--gold),#8B5E2B);
+background:linear-gradient(135deg,var(--gold),#8b5e2b);
 color:white;
 font-size:17px;
 font-weight:600;
 cursor:pointer;
 transition:0.4s;
-margin-top:10px;
+position:relative;
+overflow:hidden;
 }
 
 .submit-btn:hover{
 transform:translateY(-5px);
 }
 
+.submit-btn::before{
+content:'';
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,0.4),
+transparent
+);
+transition:0.8s;
+}
+
+.submit-btn:hover::before{
+left:100%;
+}
+
+/* FOOTER */
+
 footer{
 padding:45px;
 text-align:center;
-color:var(--muted);
 border-top:1px solid var(--border);
-background:#120D18;
+background:#120d18;
+color:var(--muted);
 }
+
+/* ANIMATION */
 
 .reveal{
 opacity:0;
@@ -403,13 +508,42 @@ opacity:1;
 transform:translateY(0);
 }
 
-@media(max-width:1100px){
-.hero-wrapper{
-grid-template-columns:1fr;
+@keyframes floaty{
+0%{
+transform:translateY(0px);
+}
+50%{
+transform:translateY(-18px);
+}
+100%{
+transform:translateY(0px);
 }
 }
 
+@keyframes glow{
+0%{
+box-shadow:0 0 20px rgba(212,169,95,0.1);
+}
+50%{
+box-shadow:0 0 60px rgba(212,169,95,0.3);
+}
+100%{
+box-shadow:0 0 20px rgba(212,169,95,0.1);
+}
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+
+.hero-wrapper{
+grid-template-columns:1fr;
+}
+
+}
+
 @media(max-width:768px){
+
 nav{
 padding:20px;
 }
@@ -418,16 +552,20 @@ padding:20px;
 display:none;
 }
 
-.hero-left h1{
-font-size:52px;
+.hero{
+padding:140px 20px 80px;
 }
 
 section{
 padding:90px 20px;
 }
 
-.hero{
-padding:140px 20px 80px;
+.hero-left h1{
+font-size:54px;
+}
+
+.section-head h2{
+font-size:42px;
 }
 
 .stats,
@@ -435,16 +573,17 @@ padding:140px 20px 80px;
 grid-template-columns:1fr;
 }
 
-.section-head h2{
-font-size:42px;
-}
 }
 
 </style>
 </head>
+
 <body>
 
+<!-- NAVBAR -->
+
 <nav>
+
 <div class="logo">Luxora</div>
 
 <ul class="nav-links">
@@ -455,7 +594,10 @@ font-size:42px;
 </ul>
 
 <a href="#booking" class="nav-btn">Book Now</a>
+
 </nav>
+
+<!-- HERO -->
 
 <section class="hero">
 
@@ -464,12 +606,12 @@ font-size:42px;
 <div class="hero-left">
 
 <h1>
-Luxury Hair &<br>
+Luxury Hair & <br>
 <span>Beauty Salon</span>
 </h1>
 
 <p>
-Experience premium beauty services with expert stylists, luxury skincare and modern salon experiences designed for your confidence.
+Experience premium salon services with luxury beauty care, expert stylists and modern hairstyle transformations designed for confidence and elegance.
 </p>
 
 <div class="hero-btns">
@@ -478,6 +620,7 @@ Experience premium beauty services with expert stylists, luxury skincare and mod
 </div>
 
 <div class="stats">
+
 <div class="stat-card">
 <h2>10+</h2>
 <p>Beauty Experts</p>
@@ -492,6 +635,7 @@ Experience premium beauty services with expert stylists, luxury skincare and mod
 <h2>24/7</h2>
 <p>Online Booking</p>
 </div>
+
 </div>
 
 </div>
@@ -502,23 +646,34 @@ Experience premium beauty services with expert stylists, luxury skincare and mod
 
 </section>
 
+<!-- SERVICES -->
+
 <section id="services">
 
 <div class="section-head reveal">
 <span>Our Services</span>
 <h2>Premium Beauty Services</h2>
 <p>
-Luxury beauty and grooming services crafted by experienced stylists.
+Luxury beauty and grooming services crafted by professional salon experts.
 </p>
 </div>
 
 <div class="services-grid">
 
 <div class="service-card reveal">
+<div class="service-top">✂️</div>
+<div class="service-content">
+<h3>Hair Cut</h3>
+<p>Modern stylish haircut with premium finishing and professional styling.</p>
+<div class="price">₹200</div>
+</div>
+</div>
+
+<div class="service-card reveal">
 <div class="service-top">💇</div>
 <div class="service-content">
 <h3>Hair Styling</h3>
-<p>Professional hair styling, coloring and treatments for every style.</p>
+<p>Professional hair styling, coloring and premium treatment services.</p>
 <div class="price">₹999</div>
 </div>
 </div>
@@ -527,7 +682,7 @@ Luxury beauty and grooming services crafted by experienced stylists.
 <div class="service-top">💆</div>
 <div class="service-content">
 <h3>Facial & Spa</h3>
-<p>Luxury facial treatments and relaxing spa experiences.</p>
+<p>Luxury facial treatment and relaxing spa experiences for glowing skin.</p>
 <div class="price">₹1499</div>
 </div>
 </div>
@@ -536,7 +691,7 @@ Luxury beauty and grooming services crafted by experienced stylists.
 <div class="service-top">💅</div>
 <div class="service-content">
 <h3>Nail Art</h3>
-<p>Modern nail art and manicure services for every occasion.</p>
+<p>Modern nail art and manicure services with luxury beauty care.</p>
 <div class="price">₹799</div>
 </div>
 </div>
@@ -545,13 +700,15 @@ Luxury beauty and grooming services crafted by experienced stylists.
 
 </section>
 
+<!-- GALLERY -->
+
 <section id="gallery">
 
 <div class="section-head reveal">
-<span>Our Gallery</span>
+<span>Gallery</span>
 <h2>Beauty Transformations</h2>
 <p>
-Explore our premium salon work and luxury beauty experiences.
+Explore our luxury beauty and hairstyle transformation experiences.
 </p>
 </div>
 
@@ -561,7 +718,7 @@ Explore our premium salon work and luxury beauty experiences.
 <div class="gallery-image">✨</div>
 <div class="gallery-content">
 <h3>Bridal Makeup</h3>
-<p>Elegant bridal beauty and makeup styling for special occasions.</p>
+<p>Elegant bridal beauty styling and professional makeup services.</p>
 </div>
 </div>
 
@@ -569,7 +726,7 @@ Explore our premium salon work and luxury beauty experiences.
 <div class="gallery-image">🌸</div>
 <div class="gallery-content">
 <h3>Luxury Haircare</h3>
-<p>Premium hair treatments and modern styling experiences.</p>
+<p>Premium hair treatments and modern salon experiences.</p>
 </div>
 </div>
 
@@ -577,7 +734,7 @@ Explore our premium salon work and luxury beauty experiences.
 <div class="gallery-image">💖</div>
 <div class="gallery-content">
 <h3>Beauty Studio</h3>
-<p>Professional beauty care services with luxury ambience.</p>
+<p>Professional beauty care with premium salon ambience.</p>
 </div>
 </div>
 
@@ -585,13 +742,15 @@ Explore our premium salon work and luxury beauty experiences.
 
 </section>
 
+<!-- TEAM -->
+
 <section id="team">
 
 <div class="section-head reveal">
 <span>Our Experts</span>
 <h2>Meet Our Stylists</h2>
 <p>
-Professional beauty experts dedicated to your confidence and style.
+Professional salon experts dedicated to your confidence and beauty.
 </p>
 </div>
 
@@ -602,7 +761,7 @@ Professional beauty experts dedicated to your confidence and style.
 <div class="team-content">
 <h3>Jessica</h3>
 <div class="role">Hair Stylist</div>
-<p>Expert in luxury hair styling and modern beauty trends.</p>
+<p>Expert in modern luxury hairstyle and premium beauty styling.</p>
 </div>
 </div>
 
@@ -628,46 +787,48 @@ Professional beauty experts dedicated to your confidence and style.
 
 </section>
 
+<!-- BOOKING -->
+
 <section id="booking">
 
 <div class="section-head reveal">
 <span>Book Appointment</span>
-<h2>Reserve Your Beauty Session</h2>
+<h2>Reserve Your Session</h2>
 <p>
-Book your salon appointment online and enjoy a premium beauty experience.
+Book your premium salon experience with our professional beauty experts.
 </p>
 </div>
 
 <div class="booking-wrap reveal">
 
-<form action="https://formspree.io/f/mdabrage" method="POST">
+<form action="#">
 
 <div class="form-grid">
 
 <div class="form-group">
-<input type="text" name="name" placeholder="Your Name" required>
+<input type="text" placeholder="Your Name">
 </div>
 
 <div class="form-group">
-<input type="text" name="phone" placeholder="Phone Number" required>
+<input type="text" placeholder="Phone Number">
 </div>
 
 </div>
 
 <div class="form-group">
-<select name="service">
+<select>
+<option>Hair Cut</option>
 <option>Hair Styling</option>
 <option>Facial & Spa</option>
 <option>Nail Art</option>
-<option>Bridal Makeup</option>
 </select>
 </div>
 
 <div class="form-group">
-<textarea name="message" placeholder="Additional Details"></textarea>
+<textarea placeholder="Additional Details"></textarea>
 </div>
 
-<button type="submit" class="submit-btn">
+<button class="submit-btn">
 Book Appointment
 </button>
 
@@ -677,13 +838,17 @@ Book Appointment
 
 </section>
 
+<!-- FOOTER -->
+
 <footer>
-© 2025 Luxora Salon · Premium Beauty & Hair Studio
+© 2026 Luxora Salon • Premium Beauty & Hair Studio
 </footer>
 
 <script>
 
-window.addEventListener('scroll', reveal);
+/* REVEAL ANIMATION */
+
+window.addEventListener('scroll',reveal);
 
 function reveal(){
 
@@ -695,8 +860,10 @@ let windowHeight=window.innerHeight;
 let elementTop=reveals[i].getBoundingClientRect().top;
 let elementVisible=100;
 
-if(elementTop < windowHeight - elementVisible){
+if(elementTop < windowHeight-elementVisible){
+
 reveals[i].classList.add('active');
+
 }
 
 }
@@ -705,8 +872,21 @@ reveals[i].classList.add('active');
 
 reveal();
 
+/* MOUSE PARALLAX */
+
+document.addEventListener("mousemove",function(e){
+
+const hero=document.querySelector(".hero-image");
+
+let x=(window.innerWidth/2 - e.pageX)/40;
+let y=(window.innerHeight/2 - e.pageY)/40;
+
+hero.style.transform=
+`translateX(${x}px) translateY(${y}px)`;
+
+});
+
 </script>
 
 </body>
 </html>
-```
