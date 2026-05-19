@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Luxora Salon</title>
+<title>Luxora Premium Salon</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
---bg:#0f0b14;
---card:#1b1325;
+--bg:#090603;
 --gold:#d4a95f;
---gold2:#f5d28c;
---text:#ffffff;
---muted:#b8b2c5;
---border:rgba(255,255,255,0.08);
+--gold2:#ffcf70;
+--white:#ffffff;
+--muted:#c9bca8;
+--glass:rgba(255,255,255,.05);
+--border:rgba(255,255,255,.08);
 }
 
 *{
@@ -31,25 +31,25 @@ scroll-behavior:smooth;
 }
 
 body{
-font-family:'Inter',sans-serif;
+font-family:'Poppins',sans-serif;
 background:var(--bg);
-color:var(--text);
+color:white;
 overflow-x:hidden;
 }
 
-/* BACKGROUND GLOW */
+/* BACKGROUND */
 
 body::before{
 content:'';
 position:fixed;
 width:600px;
 height:600px;
-background:rgba(212,169,95,0.12);
+background:rgba(212,169,95,.12);
 filter:blur(120px);
 top:-200px;
 right:-100px;
 z-index:-1;
-animation:floaty 7s ease-in-out infinite;
+animation:floating 8s ease infinite;
 }
 
 /* NAVBAR */
@@ -59,21 +59,22 @@ position:fixed;
 top:0;
 left:0;
 right:0;
-z-index:1000;
+z-index:999;
 display:flex;
 justify-content:space-between;
 align-items:center;
 padding:20px 70px;
-background:rgba(15,11,20,0.8);
-backdrop-filter:blur(16px);
-border-bottom:1px solid var(--border);
+background:rgba(0,0,0,.55);
+backdrop-filter:blur(18px);
+border-bottom:1px solid rgba(255,255,255,.06);
 }
 
 .logo{
-font-family:'Playfair Display',serif;
-font-size:32px;
+font-size:38px;
+font-family:'Cinzel',serif;
 font-weight:700;
 color:var(--gold2);
+text-shadow:0 0 20px rgba(212,169,95,.5);
 }
 
 .nav-links{
@@ -84,49 +85,43 @@ list-style:none;
 
 .nav-links a{
 text-decoration:none;
-color:var(--muted);
-transition:0.3s;
+color:#d0c4b1;
 font-weight:500;
+transition:.4s;
+position:relative;
+}
+
+.nav-links a::after{
+content:'';
+position:absolute;
+left:0;
+bottom:-5px;
+width:0%;
+height:2px;
+background:var(--gold2);
+transition:.4s;
 }
 
 .nav-links a:hover{
 color:white;
 }
 
-.nav-btn{
-background:linear-gradient(135deg,var(--gold),#8b5e2b);
+.nav-links a:hover::after{
+width:100%;
+}
+
+.book-btn{
 padding:14px 28px;
 border-radius:14px;
-text-decoration:none;
+background:linear-gradient(135deg,var(--gold),#8b5a1f);
 color:white;
+text-decoration:none;
 font-weight:600;
-position:relative;
-overflow:hidden;
-transition:0.4s;
+transition:.4s;
 }
 
-.nav-btn:hover{
+.book-btn:hover{
 transform:translateY(-5px);
-}
-
-.nav-btn::before{
-content:'';
-position:absolute;
-top:0;
-left:-100%;
-width:100%;
-height:100%;
-background:linear-gradient(
-90deg,
-transparent,
-rgba(255,255,255,0.4),
-transparent
-);
-transition:0.8s;
-}
-
-.nav-btn:hover::before{
-left:100%;
 }
 
 /* HERO */
@@ -135,161 +130,215 @@ left:100%;
 min-height:100vh;
 display:flex;
 align-items:center;
-padding:140px 70px 80px;
+padding:150px 70px 80px;
 position:relative;
-}
-
-.hero::before{
-content:'';
-position:absolute;
-width:320px;
-height:320px;
-border-radius:50%;
-background:rgba(212,169,95,0.1);
-left:-120px;
-top:120px;
-filter:blur(80px);
-animation:floaty 6s ease-in-out infinite;
+overflow:hidden;
 }
 
 .hero-wrapper{
 display:grid;
-grid-template-columns:1.1fr 1fr;
+grid-template-columns:1fr 1fr;
 gap:60px;
 align-items:center;
 width:100%;
 }
 
+/* LEFT */
+
+.hero-left small{
+color:var(--gold2);
+font-size:15px;
+letter-spacing:4px;
+text-transform:uppercase;
+}
+
 .hero-left h1{
-font-family:'Playfair Display',serif;
-font-size:88px;
-line-height:1.05;
-margin-bottom:25px;
+font-size:90px;
+line-height:1;
+margin:25px 0;
+font-family:'Cinzel',serif;
 }
 
 .hero-left h1 span{
 color:var(--gold2);
+text-shadow:
+0 0 20px rgba(212,169,95,.7),
+0 0 60px rgba(212,169,95,.4);
 }
 
 .hero-left p{
 font-size:18px;
 line-height:1.9;
 color:var(--muted);
-margin-bottom:40px;
-max-width:650px;
+margin-bottom:35px;
+max-width:600px;
 }
 
 .hero-btns{
 display:flex;
-gap:18px;
+gap:20px;
 flex-wrap:wrap;
+margin-bottom:40px;
 }
 
-.btn-primary,
-.btn-outline{
-padding:16px 32px;
-border-radius:14px;
+.btn{
+padding:17px 35px;
+border-radius:16px;
 text-decoration:none;
 font-weight:600;
-transition:0.4s;
-position:relative;
-overflow:hidden;
+transition:.5s;
 }
 
 .btn-primary{
-background:linear-gradient(135deg,var(--gold),#8b5e2b);
+background:linear-gradient(135deg,var(--gold),#8b5a1f);
 color:white;
-box-shadow:0 15px 40px rgba(212,169,95,0.2);
+box-shadow:0 0 35px rgba(212,169,95,.25);
 }
 
 .btn-primary:hover{
-transform:translateY(-6px);
-}
-
-.btn-primary::before{
-content:'';
-position:absolute;
-top:0;
-left:-100%;
-width:100%;
-height:100%;
-background:linear-gradient(
-90deg,
-transparent,
-rgba(255,255,255,0.5),
-transparent
-);
-transition:0.8s;
-}
-
-.btn-primary:hover::before{
-left:100%;
+transform:translateY(-8px);
 }
 
 .btn-outline{
-border:1px solid var(--border);
-background:rgba(255,255,255,0.03);
+border:1px solid rgba(255,255,255,.1);
+background:rgba(255,255,255,.04);
+backdrop-filter:blur(10px);
 color:white;
 }
 
 .btn-outline:hover{
-background:rgba(255,255,255,0.08);
-}
-
-/* HERO IMAGE */
-
-.hero-image{
-height:650px;
-border-radius:40px;
-background:url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=1200&auto=format&fit=crop') center/cover;
-box-shadow:0 30px 80px rgba(0,0,0,0.45);
-position:relative;
-overflow:hidden;
-animation:floaty 6s ease-in-out infinite;
-transition:0.2s;
-}
-
-.hero-image::before{
-content:'';
-position:absolute;
-inset:0;
-background:linear-gradient(to top,rgba(0,0,0,0.55),transparent);
+background:rgba(255,255,255,.08);
+transform:translateY(-8px);
 }
 
 /* STATS */
 
 .stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-margin-top:50px;
+display:flex;
+gap:35px;
+flex-wrap:wrap;
 }
 
-.stat-card{
-background:rgba(255,255,255,0.04);
-padding:25px;
-border-radius:24px;
-border:1px solid var(--border);
-text-align:center;
-transition:0.4s;
+.stat{
+display:flex;
+align-items:center;
+gap:12px;
 }
 
-.stat-card:hover{
-transform:translateY(-10px);
-}
-
-.stat-card h2{
-font-size:42px;
-font-family:'Playfair Display',serif;
+.stat h3{
+font-size:32px;
 color:var(--gold2);
-margin-bottom:10px;
 }
 
-.stat-card p{
+.stat p{
+font-size:14px;
 color:var(--muted);
 }
 
-/* SECTIONS */
+/* RIGHT */
+
+.hero-right{
+position:relative;
+height:720px;
+perspective:1200px;
+}
+
+.main-image{
+width:100%;
+height:100%;
+border-radius:40px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.08);
+box-shadow:
+0 20px 100px rgba(0,0,0,.7),
+0 0 40px rgba(212,169,95,.15);
+animation:floating 6s ease infinite;
+transition:1s;
+}
+
+.main-image:hover{
+transform:
+rotateY(10deg)
+rotateX(4deg)
+scale(1.03);
+}
+
+.main-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* FLOATING GLASS CARDS */
+
+.float-card{
+position:absolute;
+padding:20px 24px;
+border-radius:22px;
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.08);
+box-shadow:0 10px 40px rgba(0,0,0,.4);
+animation:floating 5s ease infinite;
+}
+
+.float-card h3{
+font-size:30px;
+color:var(--gold2);
+margin-bottom:6px;
+}
+
+.float1{
+top:40px;
+left:-40px;
+}
+
+.float2{
+bottom:40px;
+right:-40px;
+animation-delay:2s;
+}
+
+/* FEATURES */
+
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:25px;
+padding:60px 70px;
+}
+
+.feature-card{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(14px);
+padding:35px;
+border-radius:28px;
+transition:.5s;
+}
+
+.feature-card:hover{
+transform:translateY(-12px);
+box-shadow:0 0 40px rgba(212,169,95,.15);
+}
+
+.feature-icon{
+font-size:55px;
+margin-bottom:18px;
+color:var(--gold2);
+}
+
+.feature-card h3{
+font-size:24px;
+margin-bottom:12px;
+}
+
+.feature-card p{
+line-height:1.8;
+color:var(--muted);
+}
+
+/* TEAM */
 
 section{
 padding:120px 70px;
@@ -301,100 +350,70 @@ margin-bottom:70px;
 }
 
 .section-head span{
-letter-spacing:4px;
-font-size:13px;
-text-transform:uppercase;
 color:var(--gold2);
+letter-spacing:4px;
+font-size:14px;
+text-transform:uppercase;
 }
 
 .section-head h2{
-font-size:60px;
-font-family:'Playfair Display',serif;
-margin:18px 0;
+font-size:70px;
+margin:20px 0;
+font-family:'Cinzel',serif;
 }
 
 .section-head p{
 max-width:700px;
 margin:auto;
-line-height:1.8;
+line-height:1.9;
 color:var(--muted);
 }
 
-/* CARDS */
-
-.services-grid,
-.gallery-grid,
 .team-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:30px;
+gap:35px;
 }
 
-.service-card,
-.gallery-card,
 .team-card{
-background:linear-gradient(
-180deg,
-rgba(255,255,255,0.04),
-rgba(255,255,255,0.02)
-);
-border:1px solid var(--border);
-border-radius:32px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+border-radius:35px;
 overflow:hidden;
-transition:0.5s;
-animation:glow 4s infinite;
+transition:.6s;
 }
 
-.service-card:hover,
-.gallery-card:hover,
 .team-card:hover{
-transform:translateY(-14px) scale(1.03);
-box-shadow:0 25px 60px rgba(212,169,95,0.18);
+transform:translateY(-15px) scale(1.03);
+box-shadow:0 0 50px rgba(212,169,95,.2);
 }
 
-.service-top,
-.gallery-image,
-.team-image{
-height:280px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:90px;
-background:linear-gradient(135deg,#d4a95f,#6f4a1f);
-transition:0.5s;
+.team-img{
+height:350px;
+overflow:hidden;
 }
 
-.gallery-card:hover .gallery-image,
-.team-card:hover .team-image{
-transform:scale(1.1) rotate(4deg);
+.team-img img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:1s;
 }
 
-.service-content,
-.gallery-content,
+.team-card:hover img{
+transform:scale(1.1);
+}
+
 .team-content{
-padding:35px;
+padding:30px;
+text-align:center;
 }
 
-.service-content h3,
-.gallery-content h3,
 .team-content h3{
-font-size:28px;
-margin-bottom:14px;
-font-family:'Playfair Display',serif;
-}
-
-.service-content p,
-.gallery-content p,
-.team-content p{
-line-height:1.8;
-color:var(--muted);
-}
-
-.price{
-margin-top:18px;
-font-size:24px;
-font-weight:700;
-color:var(--gold2);
+font-size:32px;
+margin-bottom:10px;
+font-family:'Cinzel',serif;
 }
 
 .role{
@@ -403,86 +422,106 @@ margin-bottom:14px;
 font-weight:600;
 }
 
-/* BOOKING */
-
-.booking-wrap{
-max-width:900px;
-margin:auto;
-padding:50px;
-border-radius:35px;
-background:linear-gradient(
-180deg,
-rgba(255,255,255,0.04),
-rgba(255,255,255,0.02)
-);
-border:1px solid var(--border);
+.team-content p{
+line-height:1.8;
+color:var(--muted);
 }
 
-.form-grid{
+/* SERVICES */
+
+.services{
 display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
 }
 
-.form-group{
+.service-card{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+padding:40px;
+border-radius:28px;
+transition:.5s;
+text-align:center;
+}
+
+.service-card:hover{
+transform:translateY(-12px);
+box-shadow:0 0 40px rgba(212,169,95,.18);
+}
+
+.service-icon{
+font-size:70px;
 margin-bottom:20px;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea{
-width:100%;
-padding:18px;
-border-radius:18px;
-border:1px solid var(--border);
-background:rgba(255,255,255,0.04);
-color:white;
-font-size:15px;
-outline:none;
+.service-card h3{
+font-size:28px;
+margin-bottom:12px;
 }
 
-.form-group textarea{
-resize:none;
-min-height:160px;
+.service-card p{
+line-height:1.8;
+color:var(--muted);
+margin-bottom:18px;
 }
 
-.submit-btn{
-width:100%;
-padding:18px;
-border:none;
-border-radius:18px;
-background:linear-gradient(135deg,var(--gold),#8b5e2b);
-color:white;
-font-size:17px;
-font-weight:600;
-cursor:pointer;
-transition:0.4s;
-position:relative;
+.price{
+font-size:34px;
+font-weight:700;
+color:var(--gold2);
+}
+
+/* CONTACT */
+
+.contact-wrap{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+}
+
+.contact-box{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+padding:50px;
+border-radius:35px;
+}
+
+.contact-box h3{
+font-size:48px;
+margin-bottom:35px;
+font-family:'Cinzel',serif;
+}
+
+.contact-item{
+margin-bottom:28px;
+}
+
+.contact-item h4{
+color:var(--gold2);
+margin-bottom:8px;
+font-size:20px;
+}
+
+.contact-item p{
+line-height:1.9;
+color:var(--muted);
+}
+
+.shop-image{
+height:600px;
+border-radius:35px;
 overflow:hidden;
+box-shadow:0 20px 80px rgba(0,0,0,.6);
+animation:floating 6s ease infinite;
 }
 
-.submit-btn:hover{
-transform:translateY(-5px);
-}
-
-.submit-btn::before{
-content:'';
-position:absolute;
-top:0;
-left:-100%;
+.shop-image img{
 width:100%;
 height:100%;
-background:linear-gradient(
-90deg,
-transparent,
-rgba(255,255,255,0.4),
-transparent
-);
-transition:0.8s;
-}
-
-.submit-btn:hover::before{
-left:100%;
+object-fit:cover;
 }
 
 /* FOOTER */
@@ -490,12 +529,12 @@ left:100%;
 footer{
 padding:45px;
 text-align:center;
-border-top:1px solid var(--border);
-background:#120d18;
+border-top:1px solid rgba(255,255,255,.08);
+background:rgba(255,255,255,.03);
 color:var(--muted);
 }
 
-/* ANIMATION */
+/* REVEAL */
 
 .reveal{
 opacity:0;
@@ -508,36 +547,25 @@ opacity:1;
 transform:translateY(0);
 }
 
-@keyframes floaty{
-0%{
-transform:translateY(0px);
-}
-50%{
-transform:translateY(-18px);
-}
-100%{
-transform:translateY(0px);
-}
+/* ANIMATION */
+
+@keyframes floating{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-20px);}
+100%{transform:translateY(0px);}
 }
 
-@keyframes glow{
-0%{
-box-shadow:0 0 20px rgba(212,169,95,0.1);
-}
-50%{
-box-shadow:0 0 60px rgba(212,169,95,0.3);
-}
-100%{
-box-shadow:0 0 20px rgba(212,169,95,0.1);
-}
-}
+/* MOBILE */
 
-/* RESPONSIVE */
+@media(max-width:1150px){
 
-@media(max-width:1100px){
-
-.hero-wrapper{
+.hero-wrapper,
+.contact-wrap{
 grid-template-columns:1fr;
+}
+
+.hero-right{
+height:500px;
 }
 
 }
@@ -545,10 +573,14 @@ grid-template-columns:1fr;
 @media(max-width:768px){
 
 nav{
-padding:20px;
+padding:18px 20px;
 }
 
 .nav-links{
+display:none;
+}
+
+.book-btn{
 display:none;
 }
 
@@ -560,17 +592,33 @@ section{
 padding:90px 20px;
 }
 
+.features{
+padding:40px 20px;
+}
+
 .hero-left h1{
-font-size:54px;
+font-size:56px;
 }
 
 .section-head h2{
-font-size:42px;
+font-size:44px;
 }
 
-.stats,
-.form-grid{
-grid-template-columns:1fr;
+.hero-right{
+height:420px;
+}
+
+.float1,
+.float2{
+display:none;
+}
+
+.shop-image{
+height:400px;
+}
+
+.contact-box{
+padding:35px;
 }
 
 }
@@ -584,16 +632,17 @@ grid-template-columns:1fr;
 
 <nav>
 
-<div class="logo">Luxora</div>
+<div class="logo">LUXORA</div>
 
 <ul class="nav-links">
 <li><a href="#services">Services</a></li>
-<li><a href="#gallery">Gallery</a></li>
-<li><a href="#team">Stylists</a></li>
-<li><a href="#booking">Booking</a></li>
+<li><a href="#experts">Experts</a></li>
+<li><a href="#contact">Contact</a></li>
 </ul>
 
-<a href="#booking" class="nav-btn">Book Now</a>
+<a href="#contact" class="book-btn">
+Contact Us
+</a>
 
 </nav>
 
@@ -605,42 +654,205 @@ grid-template-columns:1fr;
 
 <div class="hero-left">
 
+<small>India's Premium Salon</small>
+
 <h1>
-Luxury Hair & <br>
-<span>Beauty Salon</span>
+STYLE THAT <br>
+<span>SPEAKS YOU</span>
 </h1>
 
 <p>
-Experience premium salon services with luxury beauty care, expert stylists and modern hairstyle transformations designed for confidence and elegance.
+Experience the perfect blend of traditional Indian styling and modern luxury grooming with our expert stylists.
 </p>
 
 <div class="hero-btns">
-<a href="#booking" class="btn-primary">Book Appointment</a>
-<a href="#services" class="btn-outline">Explore Services</a>
+
+<a href="#services" class="btn btn-primary">
+Our Services
+</a>
+
+<a href="#contact" class="btn btn-outline">
+Contact Us
+</a>
+
 </div>
 
 <div class="stats">
 
-<div class="stat-card">
-<h2>10+</h2>
-<p>Beauty Experts</p>
-</div>
-
-<div class="stat-card">
-<h2>5K+</h2>
+<div class="stat">
+<h3>5K+</h3>
 <p>Happy Clients</p>
 </div>
 
-<div class="stat-card">
-<h2>24/7</h2>
-<p>Online Booking</p>
+<div class="stat">
+<h3>10+</h3>
+<p>Expert Barbers</p>
+</div>
+
+<div class="stat">
+<h3>100%</h3>
+<p>Satisfaction</p>
 </div>
 
 </div>
 
 </div>
 
-<div class="hero-image"></div>
+<div class="hero-right">
+
+<div class="main-image">
+
+<img src="https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?q=80&w=1400&auto=format&fit=crop">
+
+</div>
+
+<div class="float-card float1">
+<h3>5K+</h3>
+<p>Happy Clients</p>
+</div>
+
+<div class="float-card float2">
+<h3>10+</h3>
+<p>Indian Stylists</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FEATURES -->
+
+<div class="features">
+
+<div class="feature-card reveal">
+
+<div class="feature-icon">🧴</div>
+
+<h3>Premium Products</h3>
+
+<p>
+Only the best salon products and luxury grooming essentials.
+</p>
+
+</div>
+
+<div class="feature-card reveal">
+
+<div class="feature-icon">🛡️</div>
+
+<h3>Hygienic & Safe</h3>
+
+<p>
+Clean tools and sanitized salon experience for every customer.
+</p>
+
+</div>
+
+<div class="feature-card reveal">
+
+<div class="feature-icon">👨‍🎓</div>
+
+<h3>Trained Experts</h3>
+
+<p>
+Professional Indian stylists with modern grooming techniques.
+</p>
+
+</div>
+
+<div class="feature-card reveal">
+
+<div class="feature-icon">🌸</div>
+
+<h3>Traditional Touch</h3>
+
+<p>
+Indian traditional styling blended with modern fashion trends.
+</p>
+
+</div>
+
+</div>
+
+<!-- EXPERTS -->
+
+<section id="experts">
+
+<div class="section-head reveal">
+
+<span>Our Expert Barbers</span>
+
+<h2>Professional Stylists</h2>
+
+<p>
+Meet our professional Indian salon experts dedicated to your perfect look.
+</p>
+
+</div>
+
+<div class="team-grid">
+
+<div class="team-card reveal">
+
+<div class="team-img">
+<img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1200&auto=format&fit=crop">
+</div>
+
+<div class="team-content">
+
+<h3>Rahul Sharma</h3>
+
+<div class="role">Senior Hair Stylist</div>
+
+<p>
+Professional luxury hairstyle and grooming specialist.
+</p>
+
+</div>
+
+</div>
+
+<div class="team-card reveal">
+
+<div class="team-img">
+<img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200&auto=format&fit=crop">
+</div>
+
+<div class="team-content">
+
+<h3>Vikram Malhotra</h3>
+
+<div class="role">Hair Colour Expert</div>
+
+<p>
+Modern hair colouring and styling transformation expert.
+</p>
+
+</div>
+
+</div>
+
+<div class="team-card reveal">
+
+<div class="team-img">
+<img src="https://images.unsplash.com/photo-1504593811423-6dd665756598?q=80&w=1200&auto=format&fit=crop">
+</div>
+
+<div class="team-content">
+
+<h3>Arjun Mehta</h3>
+
+<div class="role">Beard Grooming Expert</div>
+
+<p>
+Luxury beard shaping and modern grooming specialist.
+</p>
+
+</div>
+
+</div>
 
 </div>
 
@@ -651,218 +863,156 @@ Experience premium salon services with luxury beauty care, expert stylists and m
 <section id="services">
 
 <div class="section-head reveal">
+
 <span>Our Services</span>
-<h2>Premium Beauty Services</h2>
+
+<h2>Luxury Grooming</h2>
+
 <p>
-Luxury beauty and grooming services crafted by professional salon experts.
+Premium salon and grooming services with modern Indian styling.
 </p>
+
 </div>
 
-<div class="services-grid">
+<div class="services">
 
 <div class="service-card reveal">
-<div class="service-top">✂️</div>
-<div class="service-content">
+
+<div class="service-icon">✂️</div>
+
 <h3>Hair Cut</h3>
-<p>Modern stylish haircut with premium finishing and professional styling.</p>
+
+<p>
+Stylish and modern haircut for men.
+</p>
+
 <div class="price">₹200</div>
-</div>
+
 </div>
 
 <div class="service-card reveal">
-<div class="service-top">💇</div>
-<div class="service-content">
+
+<div class="service-icon">💇</div>
+
 <h3>Hair Styling</h3>
-<p>Professional hair styling, coloring and premium treatment services.</p>
-<div class="price">₹999</div>
-</div>
+
+<p>
+Trendy hairstyles for every look.
+</p>
+
+<div class="price">₹399</div>
+
 </div>
 
 <div class="service-card reveal">
-<div class="service-top">💆</div>
-<div class="service-content">
-<h3>Facial & Spa</h3>
-<p>Luxury facial treatment and relaxing spa experiences for glowing skin.</p>
-<div class="price">₹1499</div>
-</div>
+
+<div class="service-icon">🧔</div>
+
+<h3>Beard Trim</h3>
+
+<p>
+Perfect beard shaping and styling.
+</p>
+
+<div class="price">₹150</div>
+
 </div>
 
 <div class="service-card reveal">
-<div class="service-top">💅</div>
-<div class="service-content">
-<h3>Nail Art</h3>
-<p>Modern nail art and manicure services with luxury beauty care.</p>
-<div class="price">₹799</div>
-</div>
+
+<div class="service-icon">💆</div>
+
+<h3>Face Spa</h3>
+
+<p>
+Relaxing facial and skincare treatment.
+</p>
+
+<div class="price">₹499</div>
+
 </div>
 
 </div>
 
 </section>
 
-<!-- GALLERY -->
+<!-- CONTACT -->
 
-<section id="gallery">
+<section id="contact">
 
 <div class="section-head reveal">
-<span>Gallery</span>
-<h2>Beauty Transformations</h2>
+
+<span>Visit Our Salon</span>
+
+<h2>Luxora Salon</h2>
+
 <p>
-Explore our luxury beauty and hairstyle transformation experiences.
+Premium Indian salon delivering luxury grooming with perfect modern style.
 </p>
+
 </div>
 
-<div class="gallery-grid">
+<div class="contact-wrap">
 
-<div class="gallery-card reveal">
-<div class="gallery-image">✨</div>
-<div class="gallery-content">
-<h3>Bridal Makeup</h3>
-<p>Elegant bridal beauty styling and professional makeup services.</p>
-</div>
-</div>
+<div class="contact-box reveal">
 
-<div class="gallery-card reveal">
-<div class="gallery-image">🌸</div>
-<div class="gallery-content">
-<h3>Luxury Haircare</h3>
-<p>Premium hair treatments and modern salon experiences.</p>
-</div>
+<h3>Visit Our Salon</h3>
+
+<div class="contact-item">
+<h4>Address</h4>
+<p>#42, Main Road, Anna Nagar, Chennai - 600040</p>
 </div>
 
-<div class="gallery-card reveal">
-<div class="gallery-image">💖</div>
-<div class="gallery-content">
-<h3>Beauty Studio</h3>
-<p>Professional beauty care with premium salon ambience.</p>
+<div class="contact-item">
+<h4>Phone</h4>
+<p>+91 XXXXX XXXXX</p>
 </div>
+
+<div class="contact-item">
+<h4>Email</h4>
+<p>luxorasalon@gmail.com</p>
+</div>
+
+<div class="contact-item">
+<h4>Working Hours</h4>
+<p>Mon - Sun : 9 AM - 10 PM</p>
+</div>
+
+</div>
+
+<div class="shop-image reveal">
+
+<img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=1400&auto=format&fit=crop">
+
 </div>
 
 </div>
 
 </section>
-
-<!-- TEAM -->
-
-<section id="team">
-
-<div class="section-head reveal">
-<span>Our Experts</span>
-<h2>Meet Our Stylists</h2>
-<p>
-Professional salon experts dedicated to your confidence and beauty.
-</p>
-</div>
-
-<div class="team-grid">
-
-<div class="team-card reveal">
-<div class="team-image">👩</div>
-<div class="team-content">
-<h3>Jessica</h3>
-<div class="role">Hair Stylist</div>
-<p>Expert in modern luxury hairstyle and premium beauty styling.</p>
-</div>
-</div>
-
-<div class="team-card reveal">
-<div class="team-image">💄</div>
-<div class="team-content">
-<h3>Emily</h3>
-<div class="role">Makeup Artist</div>
-<p>Professional bridal and fashion makeup specialist.</p>
-</div>
-</div>
-
-<div class="team-card reveal">
-<div class="team-image">🌸</div>
-<div class="team-content">
-<h3>Sophia</h3>
-<div class="role">Beauty Expert</div>
-<p>Luxury skincare and wellness beauty consultant.</p>
-</div>
-</div>
-
-</div>
-
-</section>
-
-<!-- BOOKING -->
-
-<section id="booking">
-
-<div class="section-head reveal">
-<span>Book Appointment</span>
-<h2>Reserve Your Session</h2>
-<p>
-Book your premium salon experience with our professional beauty experts.
-</p>
-</div>
-
-<div class="booking-wrap reveal">
-
-<form action="#">
-
-<div class="form-grid">
-
-<div class="form-group">
-<input type="text" placeholder="Your Name">
-</div>
-
-<div class="form-group">
-<input type="text" placeholder="Phone Number">
-</div>
-
-</div>
-
-<div class="form-group">
-<select>
-<option>Hair Cut</option>
-<option>Hair Styling</option>
-<option>Facial & Spa</option>
-<option>Nail Art</option>
-</select>
-</div>
-
-<div class="form-group">
-<textarea placeholder="Additional Details"></textarea>
-</div>
-
-<button class="submit-btn">
-Book Appointment
-</button>
-
-</form>
-
-</div>
-
-</section>
-
-<!-- FOOTER -->
 
 <footer>
-© 2026 Luxora Salon • Premium Beauty & Hair Studio
+© 2026 Luxora Premium Salon • All Rights Reserved
 </footer>
 
 <script>
 
-/* REVEAL ANIMATION */
+/* REVEAL */
 
-window.addEventListener('scroll',reveal);
+window.addEventListener("scroll",reveal);
 
 function reveal(){
 
-let reveals=document.querySelectorAll('.reveal');
+let reveals=document.querySelectorAll(".reveal");
 
 for(let i=0;i<reveals.length;i++){
 
 let windowHeight=window.innerHeight;
 let elementTop=reveals[i].getBoundingClientRect().top;
-let elementVisible=100;
+let elementVisible=120;
 
 if(elementTop < windowHeight-elementVisible){
 
-reveals[i].classList.add('active');
+reveals[i].classList.add("active");
 
 }
 
@@ -872,17 +1022,17 @@ reveals[i].classList.add('active');
 
 reveal();
 
-/* MOUSE PARALLAX */
+/* PARALLAX */
 
-document.addEventListener("mousemove",function(e){
+document.addEventListener("mousemove",(e)=>{
 
-const hero=document.querySelector(".hero-image");
+const image=document.querySelector(".main-image");
 
-let x=(window.innerWidth/2 - e.pageX)/40;
-let y=(window.innerHeight/2 - e.pageY)/40;
+let x=(window.innerWidth/2-e.pageX)/45;
+let y=(window.innerHeight/2-e.pageY)/45;
 
-hero.style.transform=
-`translateX(${x}px) translateY(${y}px)`;
+image.style.transform=
+`rotateY(${x}deg) rotateX(${y}deg)`;
 
 });
 
